@@ -1,8 +1,8 @@
 {
   "name": "alt-carregando-info",
   "main": [
-    "dist/alt-carregando-info.js",
-    "dist/alt-carregando-info.css"
+    "dist/alt-carregando-info.min.js",
+    "dist/alt-carregando-info.min.css"
   ],
   "version": "0.0.1",
   "homepage": "https://github.com/ericmdantas/alt-carregando-info.git",
