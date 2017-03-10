@@ -5,7 +5,7 @@
     .module('alt.carregando-info', [])
     .constant('AltCarregandoInfo', {
       EVENTO_CARREGANDO_INFO: 'alt.carregando.info',
-      EVENTO_ESCONDER_CARREGANDO_INFO: 'alt.esconder.carregando.info',
+      EVENTO_ESCONDER_CARREGANDO_INFO: 'alt.esconder.carregando.info'
     })
     .service('AltCarregandoInfoService', ['$rootScope', 'AltCarregandoInfo', function($rootScope, AltCarregandoInfo) {
       // sempre usar o service para chamada de bloqueio de tela
