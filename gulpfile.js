@@ -6,7 +6,7 @@ var coveralls = require('gulp-coveralls');
 var cssmin = require('gulp-cssmin');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
-var karma = require('karma').server;
+var Karma = require('karma').Server;
 
 var _coverage = 'coverage/**/lcov.info';
 var _scripts = 'src/**/*.js';
@@ -37,10 +37,10 @@ gulp.task('unit_test', function (done) {
   var _opts = {
     configFile: __dirname + '/karma.conf.js',
     singleRun: true,
-    browsers: ['PhantomJS']
+    browsers: ['Chrome']
   };
 
-  karma.start(_opts, done);
+  return new Karma(_opts, done).start();
 })
 
 gulp.task('coverage', ['unit_test'], function () {

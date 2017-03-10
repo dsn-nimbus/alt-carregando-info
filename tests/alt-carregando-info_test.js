@@ -32,9 +32,9 @@ describe('Directive: altCarregandoInfoDirective', function () {
 
   describe('diretiva', function() {
       describe('criação', function() {
-      it('deve ter a diretiva acessível', function() {
+        it('deve ter a diretiva acessível', function() {
           expect(_element).toBeDefined();
-      })
+        });
       });
 
     describe('exibição do modal', function() {
@@ -42,6 +42,42 @@ describe('Directive: altCarregandoInfoDirective', function () {
         _rootScope.$broadcast(EVENTO_EXIBICAO_LOADING);
 
         expect(_element.hasClass('hidden')).toBeFalsy();
+      });
+
+      it('deve chamar o service com os parâmetros corretos quando for passado um parâmetro na função', function(){
+        var obj = {msg: "String de teste"};
+        _rootScope.$broadcast(EVENTO_EXIBICAO_LOADING, obj);
+
+        expect(_element.hasClass('hidden')).toBeFalsy();
+        expect(_element.isolateScope().temMensagem).toBe(true);
+        expect(_element.isolateScope().mensagem).toEqual(obj.msg);
+      });
+
+      it('quando o parametro passado na função não for um objeto, o escopo deve ser limpo', function(){
+        var obj = "String de teste";
+        _rootScope.$broadcast(EVENTO_EXIBICAO_LOADING, obj);
+
+        expect(_element.hasClass('hidden')).toBeFalsy();
+        expect(_element.isolateScope().temMensagem).toBe(false);
+        expect(_element.isolateScope().mensagem).toEqual("");
+      });
+
+      it('quando o parametro passado na função não tiver a propriedade msg, o escopo deve ser limpo', function(){
+        var obj = {mensagem: "String de teste"};
+        _rootScope.$broadcast(EVENTO_EXIBICAO_LOADING, obj);
+
+        expect(_element.hasClass('hidden')).toBeFalsy();
+        expect(_element.isolateScope().temMensagem).toBe(false);
+        expect(_element.isolateScope().mensagem).toEqual("");
+      });
+
+      it('quando o parametro passado na função for uma string vazia, o escopo deve ser limpo', function(){
+        var obj = {msg: ""};
+        _rootScope.$broadcast(EVENTO_EXIBICAO_LOADING, obj);
+
+        expect(_element.hasClass('hidden')).toBeFalsy();
+        expect(_element.isolateScope().temMensagem).toBe(false);
+        expect(_element.isolateScope().mensagem).toEqual("");
       });
     });
 
@@ -58,7 +94,14 @@ describe('Directive: altCarregandoInfoDirective', function () {
       it('deve chamar o evento correto de exibição', function() {
           _AltCarregandoInfoService.exibe();
 
-          expect(_rootScope.$broadcast).toHaveBeenCalledWith(EVENTO_EXIBICAO_LOADING);
+          expect(_rootScope.$broadcast).toHaveBeenCalledWith(EVENTO_EXIBICAO_LOADING, undefined);
+      })
+
+      it('deve chamar o evento correto de exibição levando o parametro passado', function(){
+        var obj = {msg: "String de teste"};
+        _AltCarregandoInfoService.exibe(obj);
+
+        expect(_rootScope.$broadcast).toHaveBeenCalledWith(EVENTO_EXIBICAO_LOADING, obj);
       })
 
       it('deve chamar o evento correto de exibição', function() {
