@@ -27,7 +27,7 @@
 
 #alt-carregando-info-coberta {
   background-color: #000;
-  opacity: .6;
+  opacity: .8;
 }
 
 #alt-carregando-info-aviso {
@@ -35,6 +35,15 @@
   left: 35%;
   font-size: 100px;
   color: #fff;
+}
+
+#alt-carregando-info-mensagem {
+  position: relative;
+  display: block;
+  top: 250px;
+  text-align: center;
+  font-size: 25px;
+  color: white;
 }
 
 @media (min-width: 40em) {
