@@ -40,10 +40,10 @@
       var _link = function(scope, element, attrs) {
         _limpaEscopo(scope);
 
-        $rootScope.$on(AltCarregandoInfo.EVENTO_CARREGANDO_INFO, function(event, obj) {
+        $rootScope.$on(AltCarregandoInfo.EVENTO_CARREGANDO_INFO, function(ev, obj) {
           _limpaEscopo(scope);
 
-          if(ng.isObject(obj) && obj.msg && obj.msg.length){
+          if(ng.isObject(obj) && !!obj.msg && !!obj.msg.length) {
             scope.temMensagem = !!obj.msg;
             scope.mensagem = obj.msg;
           }
