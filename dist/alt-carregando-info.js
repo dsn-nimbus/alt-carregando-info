@@ -1,11 +1,10 @@
-;(function() {
+;(function(ng) {
   "use strict";
 
-  angular
-    .module('alt.carregando-info', [])
+  ng.module('alt.carregando-info', [])
     .constant('AltCarregandoInfo', {
       EVENTO_CARREGANDO_INFO: 'alt.carregando.info',
-      EVENTO_ESCONDER_CARREGANDO_INFO: 'alt.esconder.carregando.info',
+      EVENTO_ESCONDER_CARREGANDO_INFO: 'alt.esconder.carregando.info'
     })
     .service('AltCarregandoInfoService', ['$rootScope', 'AltCarregandoInfo', function($rootScope, AltCarregandoInfo) {
       // sempre usar o service para chamada de bloqueio de tela
@@ -25,7 +24,7 @@
                           <div id="alt-carregando-info-aviso">\
                             <p class="fa fa-fw fa-refresh fa-spin"></p>\
                           </div>\
-                          <div id="alt-carregando-info-mensagem" ng-if="temMensagem">\
+                          <div id="alt-carregando-info-mensagem" ng-show="temMensagem">\
                             <span ng-bind="mensagem"></span>\
                           </div>\
                        </div>';
@@ -44,7 +43,7 @@
         $rootScope.$on(AltCarregandoInfo.EVENTO_CARREGANDO_INFO, function(event, obj) {
           _limpaEscopo(scope);
 
-          if(angular.isObject(obj) && obj.msg && obj.msg.length){
+          if(ng.isObject(obj) && obj.msg && obj.msg.length){
             scope.temMensagem = !!obj.msg;
             scope.mensagem = obj.msg;
           }
@@ -65,4 +64,4 @@
       link: _link
     };
   }]);
-}());
+}(angular));

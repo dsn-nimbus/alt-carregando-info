@@ -1,8 +1,7 @@
-;(function() {
+;(function(ng) {
   "use strict";
 
-  angular
-    .module('alt.carregando-info', [])
+  ng.module('alt.carregando-info', [])
     .constant('AltCarregandoInfo', {
       EVENTO_CARREGANDO_INFO: 'alt.carregando.info',
       EVENTO_ESCONDER_CARREGANDO_INFO: 'alt.esconder.carregando.info'
@@ -25,7 +24,7 @@
                           <div id="alt-carregando-info-aviso">\
                             <p class="fa fa-fw fa-refresh fa-spin"></p>\
                           </div>\
-                          <div id="alt-carregando-info-mensagem" ng-if="temMensagem">\
+                          <div id="alt-carregando-info-mensagem" ng-show="temMensagem">\
                             <span ng-bind="mensagem"></span>\
                           </div>\
                        </div>';
@@ -41,10 +40,10 @@
       var _link = function(scope, element, attrs) {
         _limpaEscopo(scope);
 
-        $rootScope.$on(AltCarregandoInfo.EVENTO_CARREGANDO_INFO, function(event, obj) {
+        $rootScope.$on(AltCarregandoInfo.EVENTO_CARREGANDO_INFO, function(ev, obj) {
           _limpaEscopo(scope);
 
-          if(angular.isObject(obj) && obj.msg && obj.msg.length){
+          if(ng.isObject(obj) && !!obj.msg && !!obj.msg.length) {
             scope.temMensagem = !!obj.msg;
             scope.mensagem = obj.msg;
           }
@@ -65,4 +64,4 @@
       link: _link
     };
   }]);
-}());
+}(angular));

@@ -42,8 +42,8 @@
   display: block;
   top: 250px;
   text-align: center;
-  font-size: 25px;
-  color: white;
+  font-size: 30px;
+  color: #fff;
 }
 
 @media (min-width: 40em) {

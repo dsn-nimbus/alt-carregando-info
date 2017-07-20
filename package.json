@@ -6,7 +6,9 @@
     "dist/alt-carregando-info.css"
   ],
   "scripts": {
-    "test": "gulp coverage"
+    "build": "gulp build",
+    "test": "gulp unit_test",
+    "test-travis": "gulp test_ci"
   },
   "dependencies": {},
   "devDependencies": {
