@@ -1,6 +1,6 @@
 {
   "name": "alt-carregando-info",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": [
     "dist/alt-carregando-info.js",
     "dist/alt-carregando-info.css"
